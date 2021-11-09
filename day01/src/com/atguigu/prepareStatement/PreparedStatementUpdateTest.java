@@ -51,25 +51,62 @@ public class PreparedStatementUpdateTest {
     }
 
     @Test
-    public void test2() throws Exception {
-        //1、获取数据库的链接
-        Connection conn = JdbcUtil.getConnection();
+    public void test2() {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            //1、获取数据库的链接
+            conn = JdbcUtil.getConnection();
 
-        // 2、预编译sql语句，返回PreparedStatement的实力
-        String sql = "update customers set name = ? where id = ?";
-        PreparedStatement ps = conn.prepareStatement(sql);
+            // 2、预编译sql语句，返回PreparedStatement的实力
+            String sql = "update customers set name = ? where id = ?";
+            ps = conn.prepareStatement(sql);
 
-        // 3、填充占位符
-        ps.setObject(1, "莫扎克");
-        ps.setObject(2, 18);
+            // 3、填充占位符
+            ps.setObject(1, "莫扎克");
+            ps.setObject(2, 18);
 
-        // 4、执行语句
-        ps.execute();
+            // 4、执行语句
+            ps.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // 5、关闭资源
+            JdbcUtil.closeResource(conn, ps);
+        }
+    }
 
-        // 5、关闭资源
-        JdbcUtil.closeResource(conn, ps);
+    @Test
+    public void testUpdate() {
+//        String sql = "delete from customers where id = ?";
+//        update(sql, 12);
+        String sql = "update `order` set order_name = ? where order_id = ?";
+        update(sql, "DD", 2);
+    }
 
+    public void update(String sql, Object ...args) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            // 1、获取链接
+            conn = JdbcUtil.getConnection();
 
+            // 2、预编译数据库
+            ps = conn.prepareStatement(sql);
+
+            // 3、填充占位符
+            for(int i = 0; i < args.length; i++) {
+                ps.setObject(i + 1, args[i]);
+            }
+
+            // 4、执行语句
+            ps.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // 5、关闭资源
+            JdbcUtil.closeResource(conn, ps);
+        }
     }
 
 }

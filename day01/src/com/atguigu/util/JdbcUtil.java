@@ -24,7 +24,7 @@ public class JdbcUtil {
     */
     public static Connection  getConnection() throws Exception {
         // 1、读取配置项文件的基本信息
-        InputStream systemResourceAsStream = ClassLoader.getSystemResourceAsStream("jdbc.properties");
+        InputStream systemResourceAsStream = ClassLoader.getSystemClassLoader().getSystemResourceAsStream("jdbc.properties");
 
         Properties properties = new Properties();
         properties.load(systemResourceAsStream);
