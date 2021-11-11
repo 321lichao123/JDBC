@@ -2,10 +2,7 @@ package com.atguigu.util;
 
 
 import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Properties;
 
 /**
@@ -53,6 +50,27 @@ public class JdbcUtil {
         try {
             if(con != null)
                 con.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public static void closeResource(Connection con, PreparedStatement ps, ResultSet res) {
+        try {
+            if(ps != null)
+                ps.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        try {
+            if(con != null)
+                con.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        try {
+            if(res != null)
+                res.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
