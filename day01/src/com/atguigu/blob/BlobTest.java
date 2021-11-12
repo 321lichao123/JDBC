@@ -16,10 +16,10 @@ public class BlobTest {
             conn = JdbcUtil.getConnection();
             String sql = "insert into customers (name, email, birth, photo) values (?, ?, ?, ?)";
             ps = conn.prepareStatement(sql);
-            ps.setObject(1, "苍井空");
-            ps.setObject(2, "cjk@126.com");
+            ps.setObject(1, "吉泽明步");
+            ps.setObject(2, "xzmly@126.com");
             ps.setObject(3, "1991-01-01");
-            FileInputStream stream = new FileInputStream(new File("11.jpg"));
+            FileInputStream stream = new FileInputStream(new File("44.jpg"));
             ps.setObject(4, stream);
             ps.execute();
         } catch (Exception e) {

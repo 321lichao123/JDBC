@@ -13,7 +13,7 @@ import java.util.Properties;
 public class ConnectionTest {
     @Test
     public void testConnection1() throws SQLException {
-        Driver driver = new com.mysql.cj.jdbc.Driver();
+        Driver driver = new com.mysql.jdbc.Driver();
         // jdbc:mysql：协议
         // localhost: ip地址
         // 3306：MySQL的默认端口号
