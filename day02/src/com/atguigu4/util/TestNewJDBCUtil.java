@@ -1,6 +1,6 @@
 package com.atguigu4.util;
 
-import com.atguigu.bean.Customer;
+import com.atguigu2.bean.Customer;
 import org.junit.Test;
 
 import java.lang.reflect.Field;
@@ -17,10 +17,10 @@ public class TestNewJDBCUtil {
         Connection conn = null;
         PreparedStatement ps = null;
         try {
-            conn = JDBCUtil.getConnection1();
+            conn = JDBCUtil.getConnection2();
             String sql = "select id, name, email, birth from customers where id = ?";
             ps = conn.prepareStatement(sql);
-            ps.setObject(1, 1);
+            ps.setObject(1, 2);
             ResultSet res = ps.executeQuery();
             ResultSetMetaData metaData = res.getMetaData();
             int columnCount = metaData.getColumnCount();
