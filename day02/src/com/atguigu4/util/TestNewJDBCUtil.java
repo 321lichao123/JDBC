@@ -17,7 +17,7 @@ public class TestNewJDBCUtil {
         Connection conn = null;
         PreparedStatement ps = null;
         try {
-            conn = JDBCUtil.getConnection2();
+            conn = JDBCUtil.getConnection3();
             String sql = "select id, name, email, birth from customers where id = ?";
             ps = conn.prepareStatement(sql);
             ps.setObject(1, 2);
